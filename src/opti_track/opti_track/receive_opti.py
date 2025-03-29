@@ -24,7 +24,7 @@ class OptitrackSubscriber(Node):
         self.var = None
 
         # Create the subscription to PoseStamped
-        self.node.create_subscription(PoseStamped, '/vrpn_client_node/opti_test/pose', self.pose_callback, 10)
+        self.node.create_subscription(PoseStamped, '/vrpn_mocap/opti_test/pose', self.pose_callback, 10)
 
         # File setup for Data Testing
         #self.file_path = '/home/husky/arduinointerface/plot_optitrack'
