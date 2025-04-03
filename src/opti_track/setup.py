@@ -20,7 +20,7 @@ setup(
     #tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-        	'opti_data_sub = opti_track.receive_opti:main',
+        	'opti_data_sub = opti_track.receive_main:main',
         ],
     },
 )
