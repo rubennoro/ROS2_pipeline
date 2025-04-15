@@ -95,7 +95,7 @@ On Nvidia Jetson:
 `ros2 launch vrpn_mocap client.launch.yaml server:=<server ip> port:=<port>`
     1. ensure this works, with <server ip> at 192.168.0.2 and <port> 3883
 8. ros2 run opti_track opti_data_sub
-9. For all following uses, visit 3c instead
+9. For all following uses, visit 5c instead
 
 ### c) Using Existing Container
 
