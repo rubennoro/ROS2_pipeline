@@ -1,0 +1,30 @@
+launch:
+
+- arg:
+    name: "server"
+    default: "localhost"
+- arg:
+    name: "port"
+    default: "3883"
+
+- node:
+    pkg: "vrpn_mocap"
+    namespace: "vrpn_mocap"
+    exec: "client_node"
+    name: "vrpn_mocap_client_node"
+    param:
+    -
+      from: "$(find-pkg-share vrpn_mocap)/config/client.yaml"
+    -
+      name: "server"
+      value: "192.168.0.2" # was manually set to this "$(var server)"
+    -
+      name: "port"
+      value: "3883" # was manually set to this$(var port)" 
+
+- timer:
+    period: 2.0
+
+- execute_process:
+    cmd: ["ros2", "run", "opti_track", "opti_data_sub"]
+    output: "screen"
