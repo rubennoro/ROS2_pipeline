@@ -1,3 +1,6 @@
+Additional Note:
+- For packed byte array in receive_opti.py from opti_track package, need to shift values in the bytes for computer version versus Nvidia Jetson version
+
 # Steps for Running & Setting up Pipeline (Skip to 5c if second time)
 
 ## 1. EasyCAT Setup (You can test with existing files in Github Repo, but recommended to follow this step to create new ones)
