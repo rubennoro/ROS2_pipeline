@@ -9,7 +9,7 @@ import os
 def generate_launch_description():
     # Path to the YAML launch file
     config = os.path.join(get_package_share_directory('vrpn_mocap'), 'config', 'client.yaml')
-    print('here')
+    print('Config file found')
     # Include the existing launch file from Package A (vrpn_mocap)
     vrpn_node = Node(
         package='vrpn_mocap',
