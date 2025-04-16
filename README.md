@@ -85,26 +85,24 @@ On Nvidia Jetson:
     2. nano client.yaml
     3. Set the frequency to a desired value, and you need to synchronize this with Motive
 2. Exit out of the created container
-3. Attach Wifi USB and connect to DroneCage Wifi
-4. *Connect the Arduino Giga to the Jetson
-    1. Must be done for ls -l /dev/ttyACM0 to appear
-    2. Ensure blue light on Arduino is illuminated
-5. Open two terminals with the docker container
-    1. sudo docker start -ai <container_name>
-    2. sudo docker exec -it <container_name> bash
-6. In each terminal, cd .. and cd ROS2_pipeline
-    1. Run source install/setup.bash to access steps below
-7. For opti-track ros topic position data publishing
-`ros2 launch vrpn_mocap client.launch.yaml server:=<server ip> port:=<port>`
-    1. ensure this works, with <server ip> at 192.168.0.2 and <port> 3883
-8. ros2 run opti_track opti_data_sub
-9. For all following uses, visit 5c instead
+GO TO C)
 
 ### c) Using Existing Container
 
 1. Attach Wifi USB and connect to DroneCage Wifi
 2. *Connect the Arduino Giga to the Jetson before entering a container
     1. Must be done for ls -l /dev/ttyACM0 to appear
+
+With Launchfile:
+3. Open docker container
+    1. sudo docker start -ai <container_name> -> name is jet_optiMAIN
+4. CD to proper directory and source the the setup
+    1. cd ..
+    2. source install/setup.bash
+4. Run launch file to start both package scripts or go to 3b
+    1. ros2 launch vrpn_mocap launchTwo.py
+
+With Two terminals: 
 3. Open two terminals with the docker container
     1. sudo docker start -ai <container_name>
     2. sudo docker exec -it <container_name> bash
