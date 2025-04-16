@@ -36,7 +36,7 @@ class OptitrackSubscriber(Node):
         self.packet_count = 0
         self.error_count = 0
 
-    #Runs fine and makes connection
+    #Initializes serial port connection with Arduino Giga
     def init_serial(self):
         try:
             if self.ser is not None:
@@ -53,6 +53,7 @@ class OptitrackSubscriber(Node):
             self.get_logger().error(f"Failed to open port: {str(e)}")
             self.ser = None
 
+    # Function called each spin
     def callback(self, msg):
         self.write_serial(msg)
 
@@ -64,14 +65,14 @@ class OptitrackSubscriber(Node):
                 #self.get_logger().info(f"Not enough time passed")
                 return
 
+            # Struct varies for 
             send_data = struct.pack(
                 '11f',  # Explicit 11 floats
-                data.pose.position.x, data.pose.position.y, data.pose.position.z,
-                data.pose.orientation.x, data.pose.orientation.y,
-                data.pose.orientation.z, data.pose.orientation.w,
-                0.0, 0.0, 0.0, 0.0  # Padding
+                data.pose.orientation.y, data.pose.orientation.z, data.pose.orientation.w, 0.0, 0.0, 0.0, 0.0,
+                data.pose.position.x, data.pose.position.y, data.pose.position.z, data.pose.orientation.x
             )
 
+            # Checks if the serial port is open, and if so, send data and flush fully to prevent buffering
             if self.ser and self.ser.is_open:
                 self.ser.write(send_data)
                 self.ser.flush()
@@ -100,6 +101,7 @@ class OptitrackSubscriber(Node):
             self.get_logger().error(f"Read error: {str(e)}", throttle_duration_sec=1.0)
             self.error_count += 1
 
+    # Close serial port
     def close_serial(self):
         if self.ser and self.ser.is_open:
             try:
@@ -111,7 +113,8 @@ class OptitrackSubscriber(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = OptitrackSubscriber()
-    
+
+    # Runs indefinitely until Ctrl + C
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
