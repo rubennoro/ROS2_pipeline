@@ -1,3 +1,5 @@
+*Main Script is receive_opti.py from the opti_track package
+
 Additional Note:
 - For packed byte array in receive_opti.py from opti_track package, need to shift values in the bytes for computer version versus Nvidia Jetson version
 
